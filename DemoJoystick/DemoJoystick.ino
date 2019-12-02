@@ -4,7 +4,7 @@ const int SW_pin = 5; // digital pin connected to switch output
 const int X_pin = 0; // analog pin connected to X output
 const int Y_pin = 1; // analog pin connected to Y output
 
-const int penServoPin = 11;
+const int penServoPin = 8;
 Servo penServo;
 int lastAngle = 0;
 
@@ -40,20 +40,23 @@ void loop() {
   Serial.print("Y-axis: ");
   Serial.println(analogRead(Y_pin));
   Serial.print("\n\n");
-  
-  int angle = map(xAxis, 0, 1023, 60, 120);  
+
+
+  int angle = map(xAxis, 0, 900, 0, 180) + 70;
+  Serial.print("Angle: ");
+  Serial.print(angle);
+  Serial.print("\n");
+      
   if (angle != lastAngle)
   {
     lastAngle = angle;
-    Serial.print("Angle: ");
-    Serial.print(lastAngle);
-    Serial.print("\n");
+    
     //penServo.attach(penServoPin);
     //delay(50);
     penServo.write(lastAngle);
     //delay(50);
     //penServo.detach();
     delay(50);
-  } 
+  }
+   delay(250);
 }
-
