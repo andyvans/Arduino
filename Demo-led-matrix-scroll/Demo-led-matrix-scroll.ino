@@ -133,8 +133,8 @@ void printCharWithShift(char c, int shift_speed) {
   if (c < 32) return;
   c -= 32;
   memcpy_P(buffer, CH + 7 * c, 7);
-  m.writeSprite(32, 0, buffer);
-  m.setColumn(32 + buffer[0], 0);
+  m.writeSprite(maxInUse * 8, 0, buffer);
+  m.setColumn(maxInUse * 8 + buffer[0], 0);
 
   for (int i = 0; i < buffer[0] + 1; i++)
   {
